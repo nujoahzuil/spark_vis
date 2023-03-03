@@ -1,0 +1,55 @@
+---
+title: "车流量时序图"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    self_contained: true
+    code_folding: show
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 绘制车流量总时序图
+
+```{r 1}
+library(lubridate)
+```
+
+```{r 2}
+dat <- read.csv("C:\\Users\\Lenovo\\Desktop\\month.csv")
+#绘制时序图
+x <- ts(dat$x2, start = c(2020, 1), frequency = 12) #令时序变量
+plot(x,type = "o",col=2,xlab="时间",ylab="车流量(万)",
+     main = "车流量的时序图(按月份)",)
+```
+
+## 绘制某月份车流量时序图
+
+挑选时序图总趋势中车流量最大的三个月份，分别是2020年3月、2020年4月和2020年5月，各自绘制该月份区间内的车流量时序图。
+
+### TOP1(4月)
+```{r 3}
+dat2 <- read.csv("C:\\Users\\Lenovo\\Desktop\\4_day.csv")
+x2 <- ts(dat2$x, start = 1) #令时序变量
+plot(x2,type = "o",col=2,xlab="时间",ylab="车流量(万)",
+     main = "2020年4月份车流量的时序图(按天)",)
+```
+
+### TOP2(5月)
+```{r 4}
+dat3 <- read.csv("C:\\Users\\Lenovo\\Desktop\\5_day.csv")
+x3 <- ts(dat3$x, start = 1) #令时序变量
+plot(x3,type = "o",col=2,xlab="时间",ylab="车流量(万)",
+     main = "2020年5月份车流量的时序图(按天)",)
+```
+
+### TOP3(3月)
+```{r 5}
+dat4 <- read.csv("C:\\Users\\Lenovo\\Desktop\\3_day.csv")
+x4 <- ts(dat4$x, start = 1) #令时序变量
+plot(x4,type = "o",col=2,xlab="时间",ylab="车流量(万)",
+     main = "2020年3月份车流量的时序图(按天)",)
+```
